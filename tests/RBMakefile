@@ -1,0 +1,40 @@
+SHELL = /bin/bash
+
+prefix       = /etc/codes/dassl
+exec_prefix  = ${prefix}
+includedir   =
+libdir       = ${exec_prefix}/lib
+
+F77         = gfortran
+FFLAGS      = -g -O2
+F77_LNKR    = gfortran
+F77_LDFLAGS = -g -O2 
+F77_LIBS    =  -L/usr/lib/gcc/x86_64-linux-gnu/4.6 -L/usr/lib/gcc/x86_64-linux-gnu/4.6/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/4.6/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/4.6/../../.. -lgfortran -lm -lgcc_s -lquadmath -lm 
+
+LIBRARIES = -ldassl ${LIBS}
+LIBRARIES_BL = 
+
+EXAMPLES = ##MYEXAMPLE##
+
+OBJECTS = ${EXAMPLES:=.o}
+EXE_EXT = .exe
+
+# -----------------------------------------------------------------------------------------
+
+.SUFFIXES : .o .f
+
+.f.o :
+	${F77} ${FFLAGS} -c $<
+
+# -----------------------------------------------------------------------------------------
+
+all: ${OBJECTS}
+	@for i in ${EXAMPLES} ; do \
+	  echo "${F77_LNKR} -o $${i} $${i}.o ${F77_LDFLAGS} ${F77_LIBS} -L${libdir} ${LIBRARIES} ${LIBRARIES_BL}" ; \
+	  ${F77_LNKR} -o $${i}${EXE_EXT} $${i}.o ${F77_LDFLAGS} ${F77_LIBS} -L${libdir} ${LIBRARIES} ${LIBRARIES_BL} ; \
+	done
+
+clean:
+	rm -f ${OBJECTS}
+	rm -f ${EXAMPLES}
+

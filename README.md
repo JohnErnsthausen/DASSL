@@ -1,7 +1,5 @@
-DASSL ODE and DAE
-===============================================
-
-##  Numerical Integration Software
+# DASSL 
+### ODE and DAE Numerical Integration Software
 
 This is fortran 77 codes. Nontheless gfortran in the package
 

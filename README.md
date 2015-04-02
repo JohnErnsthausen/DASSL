@@ -3,8 +3,8 @@ DASSL DAE solver software and Drivers
 
 I assume you system has Ruby and Rake installed.
 
-[Ruby installation instructions](https://www.ruby-lang.org)
-[Rake installation instructions](ttp://rake.rubyforge.org)
+* [Ruby installation instructions](https://www.ruby-lang.org)
+* [Rake installation instructions](http://rake.rubyforge.org)
 
 
 In your dassl directory, change to the tests directory.

@@ -451,48 +451,52 @@ C ...
       ML = 2
       MU = 2
       M = ML + MU + 1
-C ...
+C ... Initialize DGG to zero
       DO 20 J=1,NEQ
          DO 10 I=1,7         ! 2*ML+MU+1
             DGG(I,J) = 0D0
    10    CONTINUE
    20 CONTINUE
-
+C ... I believe there is no overwriting!
       N      = NEQ/2
       DZETA  = 1D0/DBLE(N)
       DZETA2 = DZETA*DZETA
       DUM    = (DZETA-1D0)*(DZETA-1D0)/CC
       ALPHA  = 2D0*(DZETA-1D0)*DUM/CC
       BETA   = DUM*DUM
-
-      DGG(3,1) = -BETA*2D0/DZETA2-KK*Y(2)
-      DGG(2,2) = -KK*Y(1)
-      DGG(1,3) = BETA/DZETA2+ALPHA/(2D0*DZETA)
-      DGG(4,1) = -KK*Y(2)
-      DGG(3,2) = -KK*Y(1)
-C
+C ... I=1 and J=1,2,3 => K=5,4,3
+      DGG(5,1) = -BETA*2.0D0/DZETA2-KK*Y(2)
+      DGG(4,2) = -KK*Y(1)
+      DGG(3,3) = BETA/DZETA2+ALPHA/(2.0D0*DZETA)
+C ... I=2 and J=1,2 => K=6,5
+      DGG(6,1) = -KK*Y(2)
+      DGG(5,2) = -KK*Y(1)
+C ...
       DO 30 J=2,N-1
          I          = 2*J-1
          ZETA       = J*DZETA
-         DUM        = (ZETA-1D0)*(ZETA-1D0)/CC
-         ALPHA      = 2D0*(ZETA-1D0)*DUM/CC
+         DUM        = (ZETA-1.0D0)*((ZETA-1.0D0)/CC)
+         ALPHA      = 2.0D0*(ZETA-1.0D0)*(DUM/CC)
          BETA       = DUM*DUM
          BZ         = BETA/DZETA2
-         DGG(5,I-2) = BZ-ALPHA/(2D0*DZETA)
-         DGG(3,I)   = -2D0*BZ-KK*Y(I+1)
-         DGG(1,I+2) = BZ+ALPHA/(2D0*DZETA)
-         DGG(2,I+1) = -KK*Y(I)
-         DGG(4,I)   = -KK*Y(I+1)
-         DGG(3,I+1) = -KK*Y(I)
+C ...... I=2*J-1 and J=I-2,I,I+1,I+2 => K=7,5,4,3
+         DGG(7,I-2) = BZ-ALPHA/(2.0D0*DZETA)
+         DGG(5,I)   = -2.0D0*BZ-KK*Y(I+1)
+         DGG(4,I+1) = -KK*Y(I)
+         DGG(3,I+2) = BZ+ALPHA/(2.0D0*DZETA)
+C ...... I=2*J and J=2*J-1,2*J => K=6,5
+         DGG(6,I)   = -KK*Y(I+1)
+         DGG(5,I+1) = -KK*Y(I)
    30 CONTINUE
-C
-      DGG(3,2*N-1) = -KK*Y(2*N)
-      DGG(2,2*N)   = -KK*Y(2*N-1)
-      DGG(4,2*N-1) = -KK*Y(2*N)
-      DGG(3,2*N)   = -KK*Y(2*N-1)
-C ...
+C ... I=2*N-1 and J=2*N-1,2*N => K=5,4
+      DGG(5,2*N-1) = -KK*Y(2*N)
+      DGG(4,2*N)   = -KK*Y(2*N-1)
+C ... I=2*N and J=2*N-1,2*N => K=6,5
+      DGG(6,2*N-1) = -KK*Y(2*N)
+      DGG(5,2*N)   = -KK*Y(2*N-1)
+C ... I=1:NEQ and J=I => K=5
       DO 40 I=1,NEQ
-         DGG(3,I) = DGG(3,I) - CJ
+         DGG(5,I) = DGG(5,I) - CJ
  40   CONTINUE
 C ...
       RETURN

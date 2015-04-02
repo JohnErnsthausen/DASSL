@@ -1,12 +1,24 @@
 # DASSL 
 ### ODE and DAE Numerical Integration Software
 
-This is fortran 77 codes. Nontheless gfortran in the package
+Linda Petzold wrote DASSL.
+
+CWI testset drivers and documentation are available from their website.
+
+[CWI](http://www.dm.uniba.it/~testset)
+
+I rewrote a few drivers for ODE and DAE examples to familiarize myself with DASSL. A purpose
+of this repository is to share the drivers. I also share a rakefile to demonstrate building
+a DASSL library and building a DASSL driver and the availability of a fortran 77 software development
+environment.
+
+
+The gfortran compiler in the package
 
      gcc version 4.6.3 (Ubuntu/Linaro 4.6.3-1ubuntu5)
 
-will compile your codes. I was surprised too! I thought every numerical code since 2000 had to
-be written in C++ or Python or MatLab. 
+will compile all the codes in this repository. I was surprised too! I thought every numerical
+code since 2000 had to be written in C++ or Python or MatLab. 
 
 I assume your system has Ruby and Rake installed. These references will walk you through installing ruby and rake.
 

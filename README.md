@@ -1,5 +1,12 @@
-DASSL DAE solver software and Drivers
-=====================================
+DASSL ODE and DAE numerical integration software
+===============================================
+
+This is fortran 77 codes. Nontheless gfortran in the package
+
+     gcc version 4.6.3 (Ubuntu/Linaro 4.6.3-1ubuntu5)
+
+will compile your codes. I was surprised too! I thought every numerical code since 2000 had to
+be written in C++ or Python or MatLab. 
 
 I assume your system has Ruby and Rake installed. These references will walk you through installing ruby and rake.
 

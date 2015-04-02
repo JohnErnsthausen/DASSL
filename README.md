@@ -1,7 +1,7 @@
 DASSL DAE solver software and Drivers
 =====================================
 
-I assume you system has Ruby and Rake installed.
+I assume your system has Ruby and Rake installed. These references will walk you through installing ruby and rake.
 
 * [Ruby installation instructions](https://www.ruby-lang.org)
 * [Rake installation instructions](http://rake.rubyforge.org)
